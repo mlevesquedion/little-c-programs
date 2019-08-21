@@ -1,0 +1,15 @@
+#!/bin/bash
+
+FILENAME="$1"
+COMPILER="clang"
+COMPILER_ARGS="-Wall"
+
+OUTPUT="a.out"
+"$COMPILER" "$FILENAME" "$COMPILER_ARGS"
+
+if [ -f $OUTPUT ]; then
+  ./$OUTPUT
+  rm -f $OUTPUT
+fi
+
+trap 'rm -f $OUTPUT; exit 1' INT
